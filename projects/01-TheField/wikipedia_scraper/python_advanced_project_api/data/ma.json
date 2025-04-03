@@ -1,0 +1,57 @@
+[
+    {
+        "id": "Q57553",
+        "first_name": "Mohammed",
+        "last_name": "None",
+        "birth_date": "1963-08-21",
+        "death_date": null,
+        "place_of_birth": "Rabat",
+        "wikipedia_url": "https://ar.wikipedia.org/wiki/%D9%85%D8%AD%D9%85%D8%AF_%D8%A7%D9%84%D8%B3%D8%A7%D8%AF%D8%B3_%D8%A8%D9%86_%D8%A7%D9%84%D8%AD%D8%B3%D9%86",
+        "start_mandate": "1999-07-23",
+        "end_mandate": null
+    },
+    {
+        "id": "Q69103",
+        "first_name": "Hassan",
+        "last_name": "None",
+        "birth_date": "1929-07-09",
+        "death_date": "1999-07-20",
+        "place_of_birth": "Rabat",
+        "wikipedia_url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D8%AD%D8%B3%D9%86_%D8%A7%D9%84%D8%AB%D8%A7%D9%86%D9%8A_%D8%A8%D9%86_%D9%85%D8%AD%D9%85%D8%AF",
+        "start_mandate": "1961-02-26",
+        "end_mandate": "1999-07-23"
+    },
+    {
+        "id": "Q193874",
+        "first_name": "Mohammed",
+        "last_name": "None",
+        "birth_date": "1909-08-10",
+        "death_date": "1961-02-26",
+        "place_of_birth": "Fez",
+        "wikipedia_url": "https://ar.wikipedia.org/wiki/%D9%85%D8%AD%D9%85%D8%AF_%D8%A7%D9%84%D8%AE%D8%A7%D9%85%D8%B3_%D8%A8%D9%86_%D9%8A%D9%88%D8%B3%D9%81",
+        "start_mandate": "1957-08-14",
+        "end_mandate": "1961-02-26"
+    },
+    {
+        "id": "Q334782",
+        "first_name": "Mohammed",
+        "last_name": "None",
+        "birth_date": null,
+        "death_date": null,
+        "place_of_birth": "None",
+        "wikipedia_url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D9%82%D8%A7%D8%A6%D9%85_%D8%A8%D8%A3%D9%85%D8%B1_%D8%A7%D9%84%D9%84%D9%87_%D8%A7%D9%84%D8%B3%D8%B9%D8%AF%D9%8A",
+        "start_mandate": null,
+        "end_mandate": "1517-01-01"
+    },
+    {
+        "id": "Q1951892",
+        "first_name": "Mohammed",
+        "last_name": "None",
+        "birth_date": null,
+        "death_date": null,
+        "place_of_birth": "None",
+        "wikipedia_url": "https://ar.wikipedia.org/wiki/%D9%85%D8%AD%D9%85%D8%AF_%D8%A7%D9%84%D8%B4%D9%8A%D8%AE",
+        "start_mandate": "1544-01-01",
+        "end_mandate": "1554-01-01"
+    }
+]

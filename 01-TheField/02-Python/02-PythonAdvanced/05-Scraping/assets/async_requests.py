@@ -3,14 +3,14 @@ import asyncio
 import time
 
 
-api_url = "https://api.quotable.io/random"
+api_url = "https://catfact.ninja/fact"
 
 
 async def session_request_async(url: str, session: AsyncClient):
     # Instead of using request.get, we use our session
     response = await session.get(url)
     response_json = response.json()
-    print(response_json["content"])
+    print(response_json["fact"])
     return response_json
 
 
