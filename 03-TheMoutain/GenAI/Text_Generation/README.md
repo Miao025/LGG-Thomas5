@@ -4,13 +4,10 @@
 
 In this section, you will find informations about:
 
- * [Tokenization](./1.tokenization.ipynb)
- * [Embeddings](./2.word_embedding.ipynb)
- * [Lemmatization](./3.Lemmatization.ipynb)
- * [tagging and chunking](./4.tagging_and_chunking.ipynb)
- * [Html tags](./5.html_tags.ipynb)
- * [Text formatting](./6.text_formatting.ipynb)
- * [Stop words](./7.stop_words.ipynb)
+ * [Timeline](./01-timeline-nlp.ipynb)
+ * [Embeddings](./02-word-embeddings.ipynb)
+ * [LLMs](./03-large-language-models.ipynb)
+ * [RAG](./04-retrieval-augmented-generation.ipynb)
 
 But of course, you will not need all of these steps each time, it depend on your data and  on what you want to do with it.
 
