@@ -1,8 +1,6 @@
 
 # SQL Functions and Groupings
 
-## SQL Functions and Groupings
-
 SQL functions are prewritten actions that can be called on a cell, record, or database to flexibly manipulate and extract information for further analysis.  
 
 We will focus on two main types:
