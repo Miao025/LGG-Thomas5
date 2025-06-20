@@ -14,6 +14,22 @@ Read more:
 
 ---
 
+## Relational databases: Review
+
+A **relational database** is a way of structuring information in tables, rows, and columns. You could compare it to an excel file (database) with several sheets (tables) that contain tabular data (rows and columns). The particularity of this database is its ability to create relationships between those tables by joining them.
+
+What is a `join`? Let's take an example by looking at the schema of a database of a music producer. You can see here that certain fields are common between several tables.
+
+For example: `ArtistID` exists in `artists` and in `albums`. Consequently the information from an artist can be included (_joined_) to the information of his/her albums.
+
+<img src="https://www.sqlitetutorial.net/wp-content/uploads/2015/11/sqlite-sample-database-color.jpg" />
+
+SQL (Structured Query Language) is one of the most common languages for interacting with a relational database. It allows you to perform efficient and precise queries on the database, including queries among different tables.
+
+SQL mainly allows you to `select`, `insert`, `update` or `delete` data from the DB.
+
+---
+
 ## Part 1: Exploring CRUD Commands
 
 SQL can be used to perform CRUD (Create, Retrieve, Update, Delete) operations on a database.
