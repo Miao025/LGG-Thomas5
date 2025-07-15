@@ -1,6 +1,8 @@
 import random
 import inspect
 import dis
+from IPython.display import display, Markdown, Math
+import math
 
 def simple_task():
     input("The following adventure shall give you knowledge to rule the world some day.\nBut should you fail one problem, you shall perish because you cannot go back. Are you ready to take the leap?\nIf yes please press enter and answer the following questions.")
@@ -14,6 +16,57 @@ def simple_task():
                 print("WRONG ANSWER")
         except:
             print("WRONG ANSWER")
+
+def explain_sigma():
+    pwd = input("Password from the mean-median-mode exercise?")
+
+    if pwd == "ChamberOfSecrets":
+        # ---------- Title ----------
+        display(Markdown("""# 🔢  Big-Sigma (Summation) Notation
+$$\\sum_{i=0}^{n} f(i)$$
+## What it means
+Add the value of $f(i)$ for every integer $i$ starting at 0 and ending at $n$ (inclusive). In code-speak, it’s a loop that keeps an **accumulator**.\n
+### Parts of the notation
+- $\\Sigma$ : summation symbol (Greek capital sigma)\n
+- $i = 0$ : start value of the index\n
+- $n$ : end value of the index (inclusive)\n
+- $f(i)$ : function evaluated at each step\n
+### Equivalent Python:
+```python
+total = 0
+for i in range(0, n + 1):
+    total += f(i)
+```
+        
+## Example
+With $f(i)=i^2$ and $n=3$
+$$\\sum_{i=0}^{3} i^2 = 0^2 + 1^2 + 2^2 + 3^2 = 14$$
+                         
+## Bring it to the next level
+
+                         
+*“A squiggle of sigmas, a mean in the fray,*  
+*Subtract, then you square — let the outliers play.*  
+*Sum it, divide it, then square root the pain,*  
+*Deviation’s a dance 'round the average domain.”*  
+
+— *ChatGPT*
+
+Now that you know what the notation means. There is one small function I want you to implement. The formula is the following:
+$$\\sigma = \\sqrt{ \\frac{1}{n} \\sum_{i=1}^{n} (x_i - \\mu)^2 }$$
+Where we have:
+- $\\mu$ : What the speared dragon is to the dragon\n
+
+Copy the following python code in the code block below and fill it in
+```python
+def complicated_function(arr):
+    #TODO
+    return 0
+
+utils.check.check_complicated_function(complicated_function)
+```"""))
+    else:
+        print("WRONG PASSWORD!")
 
 
 def first_room_hints():
@@ -135,7 +188,8 @@ def check_simple_sigma(sigma):
     else:
         print("You don't understand the way of the sigma yet, you must try some more.")
 
-def check_sigma(sigma):
+def check_complicated_function(little_sigma):
+    all_correct = True
     def uses_only_builtin(func):
         forbidden_modules = {'numpy', 'scipy', 'statistics'}
         func_globals = func.__globals__
@@ -143,47 +197,45 @@ def check_sigma(sigma):
             try:
                 module_name = val.__name__
                 if module_name in forbidden_modules:
-                    print(f"⚠️ Warning: `{func.__name__}` uses forbidden module via alias '{name}' -> {module_name}")
+                    print(f"⚠️ Warning: The function uses forbidden module via alias '{name}' -> {module_name}")
                     return False
             except AttributeError:
                 continue
         return True
 
-    if not uses_only_builtin(sigma):
-        print("⚠️ Warning: `sigma` may not comply with vanilla Python restriction.")
+    if not uses_only_builtin(little_sigma):
+        all_correct = False
+        print("⚠️ Warning: The function may not comply with vanilla Python restriction.")
 
-    def sigma_correct(start, end, f):
-        return sum(f(n) for n in range(start, end + 1))
-
-    # Labeled test functions
-    test_funcs = [
-        ("f(n) = n", lambda n: n),
-        ("f(n) = n^2", lambda n: n * n),
-        ("f(n) = 2^n", lambda n: 2 ** n),
-        ("f(n) = (-1)^n", lambda n: (-1) ** n),
-        ("f(n) = 3n + 1", lambda n: 3 * n + 1),
-    ]
-
-    all_correct = True
+    def stddev_correct(arr):
+        if len(arr) < 2:
+            return 0.0  # Could also raise error depending on definition
+        mean = sum(arr) / len(arr)
+        variance = sum((x - mean) ** 2 for x in arr) / (len(arr))
+        return math.sqrt(variance)
 
     for _ in range(10):
-        start = random.randint(0, 10)
-        end = random.randint(start, start + 10)
-        label, f = random.choice(test_funcs)
-
-        expected = sigma_correct(start, end, f)
+        arr = [random.randint(0, 100) for _ in range(random.randint(2, 20))]
+        expected = stddev_correct(arr)
         try:
-            result = sigma(start, end, f)
+            result = little_sigma(arr)
         except Exception as e:
-            print(f"❌ sigma({start}, {end}, {label}) raised an error: {e}")
+            print(f"❌ little_sigma({arr}) raised an error: {e}")
             all_correct = False
             continue
 
         if abs(result - expected) > 1e-6:
-            print(f"❌ sigma({start}, {end}, {label}) returned {result}, expected {expected}")
+            print(f"❌ little_sigma({arr}) returned {result}, expected {expected}")
             all_correct = False
-
+    
     if all_correct:
-        print("You understand the Sigma, glory to it and to everything. Yes this scary maths symbol \nis just a for loop less scary when you think about it.")
+        display(Markdown("""## 🔔The bell curve smiles upon you🔔
+The function you have just implemented is what we more commonly refer to as the Standard Deviation, denoted $\\sigma$.
+ We call it a measure of *spread*. There are other measures of spread of course, like range, interquartile-range, variance (which is just the square of the standard deviation).
+\nChallenging you with the standard deviation was to get your brain working. But now you understand.
+ If most values are far away from the mean, the terms in the sum will be large, so the sum will be large
+ and the standard deviation will be large. Conversely, if most values are close to the mean, the terms in the sum will be small, so the sum will be small
+ so the standard deviation will be small. It's not rocket science :)\n
+The journey does not end there. Up we go. The next password will be **PaulAllen**."""))
     else:
-        print("You don't understand the way of the sigma yet, you must try some more.")
+        print("You have not yet mastered the task. Reflect, revise, return.")
