@@ -3,9 +3,9 @@
 ## Prerequisites
 - Visual Studio Code installed
 - Azure Functions extension installed
-- Azure Account extension installed
+- Azure Resources extension installed
 - An active Azure subscription
-- Azure Functions project created in VS Code (e.g., using `func init`)
+- Azure Functions project created in VS Code
 
 ## Step-by-Step Deployment Guide
 
