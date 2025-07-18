@@ -3,6 +3,9 @@ import inspect
 import dis
 from IPython.display import display, Markdown, Math
 import math
+import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib.patches import Circle
 
 def simple_task():
     input("The following adventure shall give you knowledge to rule the world some day.\nBut should you fail one problem, you shall perish because you cannot go back. Are you ready to take the leap?\nIf yes please press enter and answer the following questions.")
@@ -239,3 +242,147 @@ The function you have just implemented is what we more commonly refer to as the 
 The journey does not end there. Up we go. The next password will be **PaulAllen**."""))
     else:
         print("You have not yet mastered the task. Reflect, revise, return.")
+
+def pebble_fall(thresh=0.5):
+    if random.random()>thresh:
+        return "Blue"
+    else:
+        return "Red"
+    
+def generate_pebble_positions(colors, radius=0.03, max_attempts=1000):
+    positions = []
+    occupied = []
+
+    for idx, color in enumerate(colors):
+        np.random.seed(idx)  # Deterministic placement per index
+        for _ in range(max_attempts):
+            x, y = np.random.rand(2)
+            if all(np.hypot(x - ox, y - oy) >= 2 * radius for ox, oy in occupied):
+                positions.append((x, y, color))
+                occupied.append((x, y))
+                break
+        else:
+            raise ValueError(f"Could not place pebble {idx} without overlapping.")
+    
+    return positions
+
+def plot_pebbles(colors):
+    positions = generate_pebble_positions(colors)
+    fig, ax = plt.subplots(figsize=(6, 6))
+    ax.set_aspect('equal')
+    ax.set_xlim(0, 1)
+    ax.set_ylim(0, 1)
+    ax.axis('off')
+
+    for x, y, color in positions:
+        circ = Circle((x, y), 0.03, color=color.lower(), ec='black')
+        ax.add_patch(circ)
+
+    plt.show()
+
+def unlock_code_room3():
+    password=input("Last password from the previous room: ")
+    if password == "PaulAllen":
+        explanation = """
+### 🔓 Access Granted
+
+You've entered the correct password. Below is the Python code that simulates many trials of drawing red pebbles from a total of 20 pebbles with a 50/50 chance. It generates a dynamic visualization of a magical image that shows the distribution taking shape over time.
+
+"""
+        code_block = '''```python
+import numpy as np
+import matplotlib.pyplot as plt
+import imageio
+from io import BytesIO
+from IPython.display import display, Image
+
+def generate_pebble_distribution_gif(n_trials=1000, pebble_count=20):
+
+    print("Generating a moving image, might take some time...")
+
+    frames = []
+    counts = np.zeros(pebble_count + 1, dtype=int)
+    red_counts = np.random.binomial(n=pebble_count, p=0.5, size=n_trials)
+
+    for i in range(1, n_trials + 1):
+        counts[red_counts[i - 1]] += 1
+
+        if i % (n_trials // 100) == 0 or i == n_trials:
+            fig, ax = plt.subplots(figsize=(8, 4))
+            x = np.arange(pebble_count + 1)
+            ax.bar(x, counts, color='red', alpha=0.7)
+            ax.set_title(f'Distribution of Red Pebbles after {i} trials')
+            ax.set_xlabel('Number of Red Pebbles (out of 20)')
+            ax.set_ylabel('Frequency')
+            ax.set_ylim(0, n_trials * 0.1762 * 1.2)
+            plt.tight_layout()
+            buf = BytesIO()
+            plt.savefig(buf, format='png')
+            buf.seek(0)
+            frames.append(imageio.v2.imread(buf))
+            buf.close()
+            plt.close()
+
+    # Save to BytesIO for inline display
+    gif_buf = BytesIO()
+    imageio.mimsave(gif_buf, frames, format='GIF', fps=10)
+    gif_buf.seek(0)
+
+    # Display inline in Jupyter
+    display(Image(data=gif_buf.getvalue(), format='gif'))
+
+generate_pebble_distribution_gif(n_trials=2000)
+```'''
+
+        display(Markdown(explanation + code_block))
+    else:
+        print("❌ Incorrect password. Please try again.")
+
+def how_many_reds():
+    guess=input("""How many reds must there be in view,\n
+          To state with ninety-five percent confidence,\n 
+          That red holds greater likelihood by evidence?""")
+    if guess=='15':
+        output_string="""The ceiling opened up from above. Through a small opening, Yann could again peek at the sky. Geoffrey sure wouldn't believe him. But Yann didn't care, the relief of being out of this mess was enough. He climbed his way through and found himself on the forest floor not too far away from the entrance of the cave. Geoffrey was sitting there waiting.
+
+**Geoffrey**: Hey Yann, where were you? I thought the monster got to you!
+
+**Yann**: Well... maybe it did.
+
+**Geoffrey**: Huh?! You saw the monster.
+
+**Yann**: No, well not really. Forget it.
+
+**Geoffrey**: Right chicken. Anyways *I* went to the end of the cave and look what I found!
+
+Geoffrey reached into his pocket and took out a handful of pretty rocks, some were blue, others red.
+
+**Geoffrey**: There were plenty in a small pile I nearly stumbled on. They're so pretty.
+
+Yann smiled.
+
+**Yann**: Come, let's go home. I'll show you something.
+
+<div align="center">
+
+***The End***
+
+</div>
+<br />
+<br />
+<br />
+<br />
+<br />
+If you enjoyed this escape game and have some feedback for it. Maybe there's errors. Maybe ways to make it better. Anyways please give.
+
+There are of course better ways to explore these concepts more in theory.
+- I would highly recommend you to wrap up the [introduction to statistics](https://app.datacamp.com/learn/courses/introduction-to-statistics) and [introduction to statistics in Python](https://app.datacamp.com/learn/courses/introduction-to-statistics-in-python) from DataCamp. Where they explore these concepts more formally.
+- If you want to go over it a little more in detail here are some cool statquest videos
+    - On [mean & variance](https://www.youtube.com/watch?v=SzZ6GpcfoQY)
+    - On [p-values and hypothesis testing](https://www.youtube.com/watch?v=vemZtEM63GY)
+    - On [statistical distributions](https://www.youtube.com/watch?v=oI3hZJqXJuc)
+
+There are other resources I may add in the future and share on discord. In the meantime I hope you enjoyed, take care and have a nice weekend :)"""
+        display(Markdown(output_string))
+    else:
+        print("Incorrect!!!!")
